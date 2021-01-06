@@ -1,0 +1,40 @@
+{
+    data_dir: 'data/quora',
+    output_dir: 'quora_WD-match',
+    metric: 'acc',
+
+    model: {
+        enc_layers: 2,
+        blocks: 2,
+        prediction: 'symmetric',
+        hidden_size: 200,
+        max_len: 100,
+        decoder_num: 1,
+        adv_factor: 0.0002,
+        max_adv_factor: 0.05,
+        lamda: 0.0001,
+        adv_warmup_steps: 2560,
+        value_clipping: 10,
+    },
+
+    routine: {
+        eval_per_samples: 25600,
+        eval_warmup_samples: 3584000,
+        eval_per_samples_warmup: 512000,
+        min_samples: 5120000,
+        tolerance_samples: 2560000,
+    },
+
+    optim: {
+        lr: 0.0012,
+        min_lr: 6e-5,
+        lr_decay_samples: 256000,
+        batch_size: 512,
+        lr_warmup_samples: 0,
+        epochs: 30,
+        adv_epoch: 5,
+        adv_batch: 2048,
+        match_epoch: 5,
+        max_matchepoch: 1,
+    },
+}

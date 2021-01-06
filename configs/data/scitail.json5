@@ -1,0 +1,37 @@
+{
+    data_dir: 'data/scitail',
+    output_dir: 'scitail_WD-match',
+    metric: 'acc',
+
+    model: {
+        alignment: 'identity',
+        enc_layers: 3,
+        blocks: 2,
+        decoder_num: 1,
+        hidden_size: 200,
+        adv_factor: 0.00001,
+        lamda: 0.001,
+        value_clipping: 100,
+        max_adv_factor: 0.05,
+
+        adv_warmup_steps: 12800,
+    },
+
+    routine: {
+        epochs: 70,
+        adv_epoch: 5,
+        match_epoch: 2,
+        log_per_samples: 1280,
+        eval_per_samples: 6400,
+    },
+
+
+
+    optim: { // fixed learning rate
+        lr: 0.001,
+        lr_warmup_samples: 0,
+        lr_decay_rate: 1,
+        batch_size: 128,
+        adv_batch: 2048,
+    },
+}
